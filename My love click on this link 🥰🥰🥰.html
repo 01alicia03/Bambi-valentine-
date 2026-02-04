@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bambi, Will You Be My Valentine? ❤️</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', 'Helvetica', sans-serif;
+        background: linear-gradient(135deg, #0f0f0f, #1a0000);
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .card {
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(8px);
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(255, 0, 0, 0.25);
+        max-width: 420px;
+        border: 1px solid #ff0000aa;
+    }
+
+    h1, h2 {
+        color: #ff0000;
+        margin: 0.4em 0;
+    }
+
+    h1 { font-size: 2.1rem; }
+    h2 { font-size: 1.6rem; }
+
+    p {
+        color: #e0e0e0;
+        line-height: 1.6;
+        font-size: 1.1rem;
+    }
+
+    .buttons {
+        margin: 30px 0 10px;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    button {
+        padding: 14px 32px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .yes-btn {
+        background: #ff0000;
+        color: white;
+    }
+
+    .yes-btn:hover {
+        background: #cc0000;
+        transform: scale(1.08);
+    }
+
+    .no-btn {
+        background: #333333;
+        color: #ffffff;
+    }
+
+    .no-btn:hover {
+        background: #444444;
+    }
+
+    img.us-photo {
+        max-width: 60%;
+        border-radius: 16px;
+        margin: 20px auto;
+        display: block;
+        border: 2px solid #ff000055;
+    }
+
+    .hidden { display: none !important; }
+    @keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+
+</style>
+</head>
+<body>
+<audio id="bgMusic" loop>
+    <source src="C:\Users\123al\Downloads\Untitled video - Made with Clipchamp.m4a" type="audio/mpeg">
+</audio>
+
+<!-- Page 1 -->
+<div id="page1" class="card">
+    <h1>Hey Bambi ❤️</h1>
+    <h2>Wanna be my Valentine?</h2>
+    <div class="buttons">
+        <button class="yes-btn" onclick="goToSorryPage()">Yes 😍</button>
+        <button class="no-btn" onclick="goToAreyousurePage()">No 😅</button>
+    </div>
+</div>
+
+<!-- Page 2 -->
+<div id="page2" class="card hidden">
+    <h2>Are you really sure…? 🥺</h2>
+    <img class="us-photo"
+         src="C:\Users\123al\OneDrive\Pictures\Camera Roll\WhatsApp Image 2026-02-04 at 00.05.40.jpeg"
+         alt="Us ❤️">
+
+    <div class="buttons">
+        <button class="yes-btn" onclick="goToSorryPage()">Yes, I'm sure… but okay 😭i guess </button>
+        <button class="no-btn" onclick="goBackToStart()">No… I changed my mind 💖</button>
+    </div>
+</div>
+
+<!-- Page 3 -->
+<div id="page3" class="card hidden">
+    <h1>I'm so sorry… 🥹</h1>
+    <h2>I took forever to ask you to be my Valentine</h2>
+    <p>Do you still wanna be mine anyway?</p>
+
+    <p style="margin: 35px 0; font-style: italic; color: #ffcccc;">
+        Even though we're miles apart this Valentine's,<br>
+        my heart still races the same way it did when you asked me to be yours.<br><br>
+        You're still my safe place, my favorite notification,<br>
+        my good morning and good night — every single day.<br><br>
+        Distance is just geography…<br>
+        <strong>You are still my home.</strong><br><br>
+        So Bambi… will you be my Valentine?<br>
+        (Better late than never, right? 💌)
+    </p>
+
+    <div class="buttons">
+        <button class="yes-btn" onclick="goToFinalYes()">YES FOREVER 💞</button>
+        <button class="no-btn" id="finalNoBtn" onclick="makeNoDisappear()">No… 😔</button>
+    </div>
+</div>
+
+<!-- Page 4 -->
+<div id="page4" class="card hidden">
+    <h1>YAAYYY!!! 🎉💖</h1>
+    <p style="font-size: 1.3rem; margin: 10px 0;">
+        My heart is doing cartwheels right now 🥰<br>
+        Thank you for always choosing me .<br>
+        I love you more than words (and definitely more than distance).<br>
+        You're my favorite person… forever.<br>
+        i love you forever and always ♾️❤️
+    </p>
+    <div style="margin-top:10px;">
+       <video 
+     
+    autoplay 
+    loop 
+    muted 
+    playsinline
+    style="width:40%; border-radius:15px; border:2px solid #ff000055;">
+    <source src="WhatsApp Video 2026-02-04 at 00.15.38.mp4" type="video/mp4">
+   
+</video>
+
+        <p> now enjoy the song 🥰🥰🥰</p>
+</div>
+
+
+<script>
+
+    
+    // Play music on first interaction
+document.addEventListener("click", function () {
+    const music = document.getElementById("bgMusic");
+    music.play();
+}, { once: true });
+
+let heartsStarted = false;
+let heartInterval;
+
+/* ----------- PAGE CONTROL ----------- */
+function hideAllPages() {
+    document.querySelectorAll('.card').forEach(el => el.classList.add('hidden'));
+}
+
+function showPage(id) {
+    hideAllPages();
+    document.getElementById(id).classList.remove('hidden');
+}
+
+function goToSorryPage() {
+    showPage('page3');
+}
+
+function goBackToStart() {
+    showPage('page1');
+}
+
+function goToFinalYes() {
+    showPage('page4');
+    startHearts();
+}
+
+function goToAreyousurePage() {
+    showPage('page2');
+}
+
+function makeNoDisappear() {
+    document.getElementById('finalNoBtn').style.display = 'none';
+}
+
+
+/* ----------- FLOATING HEARTS (FIXED) ----------- */
+function startHearts() {
+
+    if (heartsStarted) return; // prevents multiple intervals
+    heartsStarted = true;
+
+    heartInterval = setInterval(function() {
+
+        const heart = document.createElement("div");
+        heart.innerHTML = "💖";
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "-30px";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        heart.style.animation = "fall 5s linear forwards";
+        heart.style.zIndex = "0";
+        heart.style.pointerEvents = "none";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+
+    }, 400);
+
+
+
+
+}
+</script>
+
+
+</body>
+</html>
